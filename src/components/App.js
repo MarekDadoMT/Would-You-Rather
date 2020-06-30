@@ -4,7 +4,9 @@ import { BrowserRouter as Router, Route} from 'react-router-dom'
 import { handleInitialData } from '../actions/shared'
 import { LoadingBar } from 'react-redux-loading'
 import { isEmpty } from 'lodash'
+import Navigation from './Navigation'
 import SignIn from './SignIn'
+import Homepage from './HomePage'
 
 
 class App extends Component {
@@ -17,12 +19,14 @@ class App extends Component {
 
         return (
             <div>
-                    <LoadingBar />
-                    {
-                        isEmpty(authedUser)
-                            ? <SignIn />
-                            : <h3>Si prihlaseny</h3>
-                    }
+                <LoadingBar />
+                <Navigation />
+
+                {
+                    isEmpty(authedUser)
+                        ? <SignIn />
+                        : <Homepage />
+                }
             </div>
         )
     }

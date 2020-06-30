@@ -4,10 +4,10 @@ import {showLoading, hideLoading} from 'react-redux-loading'
 export const GET_AUTHED_USER = 'GET_AUTHED_USER'
 export const SET_AUTHED_USER = 'SET_AUTHED_USER'
 
-export function getAuthedUser(id) {
+export function getAuthedUser(authedUser) {
     return {
         type: GET_AUTHED_USER,
-        id,
+        authedUser,
     }
 }
 

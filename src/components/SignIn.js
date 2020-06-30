@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import { Form, Button } from 'react-bootstrap'
-import {handleSetAuthedUser} from "../actions/authedUser";
+import { handleSetAuthedUser } from "../actions/authedUser";
 import { LoadingBar } from 'react-redux-loading'
 
 class SignIn extends Component {
@@ -68,7 +68,6 @@ function mapStateToProps({ users }) {
     return {
         users: Object.values(users)
     }
-
 }
 
 export default connect(mapStateToProps)(SignIn)
