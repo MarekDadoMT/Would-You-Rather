@@ -1,7 +1,10 @@
-import React, {Component} from 'react'
+import React, {Component, Fragment} from 'react'
 import { connect } from 'react-redux'
 import { BrowserRouter as Router, Route} from 'react-router-dom'
 import { handleInitialData } from '../actions/shared'
+import { LoadingBar } from 'react-redux-loading'
+import { isEmpty } from 'lodash'
+import SignIn from './SignIn'
 
 
 class App extends Component {
@@ -10,14 +13,25 @@ class App extends Component {
     }
 
     render() {
+        const { authedUser } = this.props
+
         return (
-            <div className="App">
-                Hello World
+            <div>
+                    <LoadingBar />
+                    {
+                        isEmpty(authedUser)
+                            ? <SignIn />
+                            : <h3>Si prihlaseny</h3>
+                    }
             </div>
         )
     }
-
-
 }
 
-export default connect()(App)
+function mapStateToProps({authedUser}) {
+    return {
+        authedUser: authedUser,
+    }
+}
+
+export default connect(mapStateToProps)(App)
