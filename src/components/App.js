@@ -7,6 +7,8 @@ import { isEmpty } from 'lodash'
 import Navigation from './Navigation'
 import SignIn from './SignIn'
 import Homepage from './HomePage'
+import QuestionPage from './QuestionPage'
+import Question from "./Question";
 
 
 class App extends Component {
@@ -18,16 +20,20 @@ class App extends Component {
         const { authedUser } = this.props
 
         return (
-            <div>
-                <LoadingBar />
-                <Navigation />
-
-                {
-                    isEmpty(authedUser)
-                        ? <SignIn />
-                        : <Homepage />
-                }
-            </div>
+            <Router>
+                <Fragment>
+                    <LoadingBar />
+                    <Navigation />
+                    {
+                        isEmpty(authedUser)
+                            ? <SignIn />
+                            : <div className="mt-5">
+                                <Route path="/" exact component={Homepage} />
+                                <Route path="/questions/:question_id" component={QuestionPage} />
+                            </div>
+                    }
+                </Fragment>
+            </Router>
         )
     }
 }

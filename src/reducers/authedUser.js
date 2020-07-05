@@ -8,10 +8,8 @@ export default function authedUser(state = null, action) {
             }
 
         case SET_AUTHED_USER:
-            return {
-                ...state,
-                ...action.authedUser
-            }
+            return action.id
+
 
         default:
             return state

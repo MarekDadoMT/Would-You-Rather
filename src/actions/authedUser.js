@@ -11,18 +11,19 @@ export function getAuthedUser(authedUser) {
     }
 }
 
-function setAuthedUser(authedUser) {
+function setAuthedUser(id) {
     return {
         type: SET_AUTHED_USER,
-        authedUser,
+        id,
     }
 }
 
-export function handleSetAuthedUser(user) {
+export function handleSetAuthedUser(id) {
     return (dispatch) => {
         dispatch(showLoading())
-        dispatch(setAuthedUser(user))
+        dispatch(setAuthedUser(id))
         dispatch(hideLoading())
     }
 
 }
+

@@ -10,9 +10,9 @@ class Navigation extends Component {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
-                        <Nav.Link href="/">Home</Nav.Link>
-                        <Nav.Link href="/">New Question</Nav.Link>
-                        <Nav.Link href="/">Leader Board</Nav.Link>
+                        <Nav.Link href="/">Home Page</Nav.Link>
+                        <Nav.Link href="/new">New Question</Nav.Link>
+                        <Nav.Link href="/leader">Leader Board</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
