@@ -1,40 +1,77 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
-import Question from "./Question";
+import { find, filter, indexOf } from 'lodash'
+import Question from './Question'
+import {ToggleButtonGroup, ToggleButton, Card, Button } from 'react-bootstrap'
 
 class Homepage extends Component {
+    state = {
+        variant: 1
+    }
+
+    aaa = () => {
+        this.setState({variant:1})
+    }
+    bbb = () => {
+        this.setState({variant:2})
+    }
 
     render() {
-        const { questionsIds } = this.props
+        const { answeredIds, unansweredIds} = this.props
 
         return (
-            <div className="card mt-5">
-                <ul className="list-unstyled">
+                <Card style={{marginTop: 75}}>
+
+                    {/*<ToggleButtonGroup name="radio">*/}
+                    {/*    <Button variant="secondary" clonClick={this.aaa}>*/}
+                    {/*        Unanswered*/}
+                    {/*    </Button>*/}
+                    {/*    <Button variant="secondary" onClick={this.bbb}>*/}
+                    {/*        Answered*/}
+                    {/*    </Button>*/}
+                    {/*</ToggleButtonGroup>*/}
+
                     {
-                        questionsIds.map((id) => (
-                            <li key={id}>
-                                <Question id={id} />
-                            </li>
-                        ))
+                       this.state.variant === 1
+                            ? <ul className="list-unstyled">
+                                {
+                                    unansweredIds.map((id) => (
+                                        <li key={id}>
+                                            <Question id={id} />
+                                        </li>
+                                    ))
+                                }
+                            </ul>
+                            : <ul className="list-unstyled">
+                                {
+                                    answeredIds.map((id) => (
+                                        <li key={id}>
+                                            <Question id={id} />
+                                        </li>
+                                    ))
+                                }
+                            </ul>
                     }
-                </ul>
-            </div>
+                </Card>
+
 
         )
     }
 }
 
-function mapStateToProps({ questions }) {
+function mapStateToProps({ authedUser, users, questions }) {
+
+    const user = find(users, {id: authedUser})
+
+    const answeredIds  = Object.keys(user.answers).sort((a, b) => questions[b].timestamp - questions[a].timestamp)
+
+    const unansweredIds = filter(questions, (v) => indexOf(answeredIds, v.id) === -1).map(item => item.id)
+
     return {
-        // questions: Object.values(questions)
-        questionsIds: Object.keys(questions)
-            .sort((a, b) => questions[b].timestamp - questions[a].timestamp)
+        answeredIds: answeredIds,
+        unansweredIds: unansweredIds
     }
 }
 
-// return {
-//     tweetsIds: Object.keys(tweets)
-//         .sort((a,b) => tweets[b].timestamp - tweets[a].timestamp)
-// }
 
 export default connect(mapStateToProps)(Homepage)

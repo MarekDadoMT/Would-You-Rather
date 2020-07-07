@@ -28,17 +28,14 @@ class Question extends Component {
         const optionOnePercentage = (optionOneVotes * 100) / numberOfVotes
         const optionTwoPercentage = (optionTwoVotes * 100) / numberOfVotes
 
+        // If user voted for specific option, return true
         function answer(option) {
-            console.log('option: ', option)
             if(option.find(user => user === authedUser)){
                 return true
             } else {
                 return false
             }
-
         }
-
-
 
         return (
             <Card className="m-4 w-50 mx-auto">
@@ -95,7 +92,6 @@ class Question extends Component {
                                             </div>
                                             )
                                 }
-
                             </div>
                         </div>
                     </Card.Body>
@@ -113,13 +109,6 @@ function mapStateToProps({authedUser, users, questions}, {id, pathname}) {
     const author = filter(users, (user) => (
         user.id === question.author
     ))
-
-
-    // if(question.optionOne.votes.find(user => user === authedUser)){
-    //     const answer = question.optionOne
-    // } else if (question.optionTwo.votes.find(user => user === authedUser)) {
-    //     const answer = question.optionTwo
-    // }
 
 
     return {
