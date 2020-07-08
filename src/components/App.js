@@ -29,7 +29,7 @@ class App extends Component {
                             ? <SignIn />
                             : <div>
                                 <Route path="/" exact component={Homepage} />
-                                <Route path="/new" component={NewQuestion} />
+                                <Route path="/add" component={NewQuestion} />
                                 <Route path="/questions/:question_id" component={QuestionPage} />
                             </div>
                     }

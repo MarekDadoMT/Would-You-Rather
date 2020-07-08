@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Form, Button } from 'react-bootstrap'
 import { handleSetAuthedUser } from "../actions/authedUser";
 import { LoadingBar } from 'react-redux-loading'
+import { filter, find} from 'lodash'
 
 class SignIn extends Component {
     state = {
@@ -11,8 +12,12 @@ class SignIn extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
-        const selectedUserObject = this.props.users.filter((user) => user.id === this.state.selectedUser)
-        this.props.dispatch(handleSetAuthedUser(selectedUserObject))
+
+        const { dispatch, users } = this.props
+        const { selectedUser } = this.state
+
+        const selectedUserObject = find(users, {id: selectedUser})
+        dispatch(handleSetAuthedUser(selectedUserObject.id))
     }
 
     handleSelect = (e) => {
@@ -36,7 +41,7 @@ class SignIn extends Component {
                         <Form onSubmit={this.handleSubmit}>
                             <Form.Group controlId="exampleForm.SelectCustom">
                                 <Form.Label>Select user to sign in</Form.Label>
-                                <Form.Control as="select" onChange={this.handleSelect}  custom>
+                                <Form.Control as="select" onChange={this.handleSelect} custom>
                                     {
 
                                         this.props.users.map((user) => (
