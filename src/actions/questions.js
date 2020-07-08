@@ -1,6 +1,6 @@
 import { _saveQuestion, _saveQuestionAnswer } from '../utils/_DATA'
 import {addQuestionToUser, saveAnswerToUser} from './users'
-import {showLoading, hideLoading} from "react-redux-loading";
+import {showLoading, hideLoading} from 'react-redux-loading-bar'
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
 export const SAVE_ANSWER_TO_QUESTIONS = 'SAVE_ANSWER_TO_QUESTIONS'
@@ -12,7 +12,6 @@ export function receiveQuestions(questions) {
         questions,
     }
 }
-
 
 function addQuestionToQuestions (question) {
     return {

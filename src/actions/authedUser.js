@@ -1,4 +1,4 @@
-import {showLoading, hideLoading} from 'react-redux-loading'
+import {showLoading, hideLoading} from 'react-redux-loading-bar'
 
 export const GET_AUTHED_USER = 'GET_AUTHED_USER'
 export const SET_AUTHED_USER = 'SET_AUTHED_USER'

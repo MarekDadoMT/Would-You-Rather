@@ -2,8 +2,8 @@ import React, {Component} from 'react'
 import { Navbar, Nav} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import {handleSetAuthedUser} from "../actions/authedUser";
-import { Button } from "react-bootstrap";
+import {handleSetAuthedUser} from '../actions/authedUser'
+import { Button } from 'react-bootstrap'
 import { find } from 'lodash'
 
 class Navigation extends Component {

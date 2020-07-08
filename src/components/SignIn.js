@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import { Form, Button } from 'react-bootstrap'
-import { handleSetAuthedUser } from "../actions/authedUser";
+import { handleSetAuthedUser } from '../actions/authedUser'
 import { find } from 'lodash'
 
 class SignIn extends Component {
