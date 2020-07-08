@@ -26,7 +26,7 @@ class Navigation extends Component {
                     <Nav className="mr-auto">
                         <Nav.Link as={Link} to="/">Home Page</Nav.Link>
                         <Nav.Link as={Link} to="/add">New Question</Nav.Link>
-                        <Nav.Link as={Link} to="/leader">Leader Board</Nav.Link>
+                        <Nav.Link as={Link} to="/leaderboard">Leader Board</Nav.Link>
                         {
                             isSigned
                                 ? <div className="row ml-auto">
@@ -43,12 +43,7 @@ class Navigation extends Component {
 }
 
 function mapStateToProps({ authedUser, users }) {
-    if(authedUser){
-        const user = find(users, {id: authedUser})
-    }
 
-
-    //console.log(user)
     return {
         user: authedUser
                 ? find(users, {id: authedUser})

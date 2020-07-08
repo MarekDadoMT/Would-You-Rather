@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import { Card, Button, ProgressBar } from 'react-bootstrap'
-import { filter, find, findKey } from 'lodash'
+import { filter, find } from 'lodash'
 import { Link } from 'react-router-dom'
 import { handleSaveAnswer } from '../actions/questions'
 

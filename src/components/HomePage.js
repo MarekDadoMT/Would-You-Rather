@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import { find, filter, indexOf } from 'lodash'
 import Question from './Question'
-import {ToggleButtonGroup, ToggleButton, Card, Button } from 'react-bootstrap'
+import {ToggleButtonGroup, Card, Button } from 'react-bootstrap'
 
 class Homepage extends Component {
     constructor(props) {
@@ -14,7 +14,6 @@ class Homepage extends Component {
     state = {
         view: "unanswered"
     }
-
 
     loadUnanswered() {
         this.setState({
@@ -65,17 +64,13 @@ class Homepage extends Component {
                     }
                 </Card>
 
-
         )
     }
 }
 
 function mapStateToProps({ authedUser, users, questions }) {
-
     const user = find(users, {id: authedUser})
-
     const answeredIds  = Object.keys(user.answers).sort((a, b) => questions[b].timestamp - questions[a].timestamp)
-
     const unansweredIds = filter(questions, (v) => indexOf(answeredIds, v.id) === -1).map(item => item.id).sort((a, b) => questions[b].timestamp - questions[a].timestamp)
 
     return {

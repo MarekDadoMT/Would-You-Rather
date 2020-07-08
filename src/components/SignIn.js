@@ -2,8 +2,7 @@ import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import { Form, Button } from 'react-bootstrap'
 import { handleSetAuthedUser } from "../actions/authedUser";
-import { LoadingBar } from 'react-redux-loading'
-import { filter, find} from 'lodash'
+import { find } from 'lodash'
 
 class SignIn extends Component {
     state = {

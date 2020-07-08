@@ -9,6 +9,7 @@ import SignIn from './SignIn'
 import Homepage from './HomePage'
 import QuestionPage from './QuestionPage'
 import NewQuestion from "./NewQuestion";
+import LeaderBoard from "./LeaderBoard";
 
 
 class App extends Component {
@@ -31,6 +32,7 @@ class App extends Component {
                                 <Route path="/" exact component={Homepage} />
                                 <Route path="/add" component={NewQuestion} />
                                 <Route path="/questions/:question_id" component={QuestionPage} />
+                                <Route path="/leaderboard" component={LeaderBoard} />
                             </div>
                     }
                 </Fragment>
