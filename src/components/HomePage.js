@@ -20,7 +20,7 @@ class Homepage extends Component {
         const { answeredIds, unansweredIds} = this.props
 
         return (
-                <Card style={{marginTop: 75}}>
+                <Card>
 
                     {/*<ToggleButtonGroup name="radio">*/}
                     {/*    <Button variant="secondary" clonClick={this.aaa}>*/}

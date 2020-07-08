@@ -1,8 +1,10 @@
-import { _saveQuestionAnswer} from '../utils/_DATA'
-import { saveAnswerToUser } from './users'
+import { _saveQuestion, _saveQuestionAnswer } from '../utils/_DATA'
+import {addQuestionToUser, saveAnswerToUser} from './users'
+import {showLoading, hideLoading} from "react-redux-loading";
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
 export const SAVE_ANSWER_TO_QUESTIONS = 'SAVE_ANSWER_TO_QUESTIONS'
+export const ADD_QUESTION_TO_QUESTIONS = 'ADD_QUESTION_TO_QUESTIONS'
 
 export function receiveQuestions(questions) {
     return {
@@ -10,6 +12,34 @@ export function receiveQuestions(questions) {
         questions,
     }
 }
+
+
+function addQuestionToQuestions (question) {
+    return {
+        type: ADD_QUESTION_TO_QUESTIONS,
+        question
+    }
+}
+
+export function handleAddQuestion(optionOneText, optionTwoText) {
+    return (dispatch, getState) => {
+        const {authedUser} = getState()
+
+        dispatch(showLoading())
+
+        return _saveQuestion({
+            author: authedUser,
+            optionOneText,
+            optionTwoText
+        })
+            .then((question) => dispatch(addQuestionToQuestions(question)) && dispatch(addQuestionToUser(question)))
+            .then(() => dispatch(hideLoading()))
+            .catch(() => {
+                alert('There was an error in saving question. Try again.')
+            })
+    }
+}
+
 
 function saveAnswerToQuestions({id, authedUser, answer}) {
     return {
@@ -19,6 +49,7 @@ function saveAnswerToQuestions({id, authedUser, answer}) {
         answer
     }
 }
+
 
 export function handleSaveAnswer (info) {
     const { authedUser, id, answer} = info

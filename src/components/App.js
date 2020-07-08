@@ -8,7 +8,7 @@ import Navigation from './Navigation'
 import SignIn from './SignIn'
 import Homepage from './HomePage'
 import QuestionPage from './QuestionPage'
-import Question from "./Question";
+import NewQuestion from "./NewQuestion";
 
 
 class App extends Component {
@@ -27,8 +27,9 @@ class App extends Component {
                     {
                         isEmpty(authedUser)
                             ? <SignIn />
-                            : <div className="mt-5">
+                            : <div>
                                 <Route path="/" exact component={Homepage} />
+                                <Route path="/new" component={NewQuestion} />
                                 <Route path="/questions/:question_id" component={QuestionPage} />
                             </div>
                     }

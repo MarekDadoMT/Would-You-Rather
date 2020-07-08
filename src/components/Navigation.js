@@ -6,7 +6,7 @@ class Navigation extends Component {
 
     render() {
         return (
-            <Navbar className="fixed-top" bg="light" expand="lg">
+            <Navbar  bg="light" expand="lg">
                 <Navbar.Brand href="/">Would You Rather</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
