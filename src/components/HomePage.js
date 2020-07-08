@@ -5,15 +5,27 @@ import Question from './Question'
 import {ToggleButtonGroup, ToggleButton, Card, Button } from 'react-bootstrap'
 
 class Homepage extends Component {
-    state = {
-        variant: 1
+    constructor(props) {
+        super(props)
+        this.loadUnanswered = this.loadUnanswered.bind(this)
+        this.loadAnswered = this.loadAnswered.bind(this)
     }
 
-    aaa = () => {
-        this.setState({variant:1})
+    state = {
+        view: "unanswered"
     }
-    bbb = () => {
-        this.setState({variant:2})
+
+
+    loadUnanswered() {
+        this.setState({
+            view: "unanswered"
+        })
+    }
+
+    loadAnswered() {
+        this.setState({
+            view: "answered"
+        })
     }
 
     render() {
@@ -21,18 +33,17 @@ class Homepage extends Component {
 
         return (
                 <Card>
-
-                    {/*<ToggleButtonGroup name="radio">*/}
-                    {/*    <Button variant="secondary" clonClick={this.aaa}>*/}
-                    {/*        Unanswered*/}
-                    {/*    </Button>*/}
-                    {/*    <Button variant="secondary" onClick={this.bbb}>*/}
-                    {/*        Answered*/}
-                    {/*    </Button>*/}
-                    {/*</ToggleButtonGroup>*/}
+                    <ToggleButtonGroup name="radio">
+                        <Button variant="secondary" onClick={this.loadUnanswered}>
+                            Unanswered
+                        </Button>
+                        <Button variant="secondary" onClick={this.loadAnswered}>
+                            Answered
+                        </Button>
+                    </ToggleButtonGroup>
 
                     {
-                       this.state.variant === 1
+                       this.state.view === "unanswered"
                             ? <ul className="list-unstyled">
                                 {
                                     unansweredIds.map((id) => (
@@ -65,7 +76,7 @@ function mapStateToProps({ authedUser, users, questions }) {
 
     const answeredIds  = Object.keys(user.answers).sort((a, b) => questions[b].timestamp - questions[a].timestamp)
 
-    const unansweredIds = filter(questions, (v) => indexOf(answeredIds, v.id) === -1).map(item => item.id)
+    const unansweredIds = filter(questions, (v) => indexOf(answeredIds, v.id) === -1).map(item => item.id).sort((a, b) => questions[b].timestamp - questions[a].timestamp)
 
     return {
         answeredIds: answeredIds,
